@@ -1,39 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { events } from "../../../lib/data/sampleData";
 import EventForm from "../form/EventForm";
 import EventCard from "./EventCard";
-import type { AppEvent } from "../../../lib/types";
 import { AnimatePresence, motion } from "motion/react";
-type Props = {
-  formOpen: boolean;
-  setFormOpen: (isOpen: boolean) => void;
-  formToggle: (event: AppEvent | null) => void;
-  selectedEvent: AppEvent | null;
-}
-export default function EventDashboard({ formOpen, setFormOpen, formToggle, selectedEvent }: Props) {
-  const [appEvents, setAppEvents] = useState<AppEvent[]>([]);
+import Counter from "../../counter/Counter";
+import { useAppDispatch, useAppSelector } from "../../../lib/stores/store";
+import { setEvents } from "../eventSlice";
 
-  const handleCreateEvent = (event: AppEvent) => {
-    setAppEvents(prevState => [...prevState, event]);
-  }
-  const handleUpdateEvent = (updatedEvent: AppEvent) => {
-    setAppEvents(prevState => {
-      return prevState.map(e => e.id === updatedEvent.id ? updatedEvent : e);
-    })
-  }
-  const handleDeleteEvent = (eventId: string) => { 
-    setAppEvents(prevState => prevState.filter(e => e.id !== eventId));
-  }
+export default function EventDashboard() {
+  const dispatch = useAppDispatch(); 
+  const {events: appEvents, selectedEvent, formOpen} = useAppSelector(state => state.event);
+  
   useEffect(() => {
-    setAppEvents(events);
+    dispatch(setEvents(events));
     return () => {
-      setAppEvents([]);
+      dispatch(setEvents([]));
     }
-  }, []);
+  }, [dispatch]);
   return (
     <div className="flex flex-row w-full gap-6">
       <div className="w-3/5">
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           <motion.div
             initial={{ opacity: 0, x: -200 }}
             animate={{ opacity: 1, x: 0 }}
@@ -43,9 +30,7 @@ export default function EventDashboard({ formOpen, setFormOpen, formToggle, sele
             <div className="flex flex-col gap-4">
               {appEvents.map((event) => (
                 <EventCard
-                  formToggle={formToggle}
-                  deleteEvent={handleDeleteEvent}
-                  key={event.id} 
+                  key={event.id}
                   event={event} />
               ))}
             </div>
@@ -54,7 +39,7 @@ export default function EventDashboard({ formOpen, setFormOpen, formToggle, sele
       </div>
       <div className="w-2/5 overflow-hidden">
         <AnimatePresence>
-          {formOpen && (
+          {formOpen ? (
             <motion.div
               initial={{ opacity: 0, x: 200 }}
               animate={{ opacity: 1, x: 0 }}
@@ -62,12 +47,18 @@ export default function EventDashboard({ formOpen, setFormOpen, formToggle, sele
               transition={{ duration: 1.1, ease: 'easeInOut' }}
             >
               <EventForm
-                key={selectedEvent?.id || 'new'}
-                setFormOpen={setFormOpen}
-                createEvent={handleCreateEvent}
-                selectedEvent={selectedEvent}
-                updateEvent={handleUpdateEvent}
-              />
+                key={selectedEvent?.id || 'new'}              
+                />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="counter"
+              initial={{ opacity: 0, x: 200 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 200 }}
+              transition={{ duration: 1.1, ease: 'easeInOut' }}
+            >
+              <Counter />
             </motion.div>
           )}
         </AnimatePresence>
