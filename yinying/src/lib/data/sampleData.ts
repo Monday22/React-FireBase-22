@@ -1,5 +1,4 @@
 import type { AppEvent, AppUser } from "../types";
-
 export const users: AppUser[] = [
     {
         uid: "bob-id",

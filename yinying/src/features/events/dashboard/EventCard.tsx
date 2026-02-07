@@ -5,7 +5,7 @@ type Props = {
     event: AppEvent;
 }
 export default function EventCard({ event }: Props) {
-    const host = event.attendees.find(x => x.id === event.hostUid); 
+    const host = event.attendees.find(x => x.id === event.hostUid);
     return (
         <div className="card card-border bg-base-100 w-full">
             <div className="card-body">
@@ -27,11 +27,11 @@ export default function EventCard({ event }: Props) {
                     <div className="flex flex-1">
                         {event.description}
                     </div>
-                    <div className="flex gap-3">
+                    <div className="flex gap-3"> 
                         <Link to={`/events/${event.id}`} className="btn btn-primary">View</Link>
                     </div>
                 </div>
             </div>
         </div>
-    )
+    ) 
 } 
