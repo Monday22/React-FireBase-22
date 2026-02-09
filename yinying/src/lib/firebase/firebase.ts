@@ -6,7 +6,7 @@ import 'firebase/firestore'
 // https://firebase.google.com/docs/web/setup#available-libraries
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyD0rvarJEVjz9lWJ6rx7eXg5Td-KnNaswQ",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "yingying-5ddc7.firebaseapp.com",
   projectId: "yingying-5ddc7",
   storageBucket: "yingying-5ddc7.firebasestorage.app",
