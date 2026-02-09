@@ -1,9 +1,18 @@
 import { CalendarIcon, InformationCircleIcon, MapPinIcon } from "@heroicons/react/24/outline";
+<<<<<<< HEAD
 import { useState } from "react";
 import MapComponent from "../../../app/shared/components/MapComponent";
 import type { AppEvent } from "../../../lib/types";
 export default function EventDetailedInfo({event}: {event: AppEvent}) {
     const [mapOpen, setMapOpen] = useState(false);
+=======
+import { useAppSelector } from "../../../lib/stores/store";
+import { useState } from "react";
+import MapComponent from "../../../app/shared/components/MapComponent";
+export default function EventDetailedInfo() {
+    const [mapOpen, setMapOpen] = useState(false);
+    const event = useAppSelector(state => state.event.selectedEvent);
+>>>>>>> de7542c0fb3298521bac62c709b896e39257d0f7
     return (
         <div className="card bg-base-100">
             <div className="flex flex-col align-middle">
@@ -18,7 +27,11 @@ export default function EventDetailedInfo({event}: {event: AppEvent}) {
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-x-3 py-3 pl-3">
                         <MapPinIcon className="size-8" />
+<<<<<<< HEAD
                         <span>{event.venue}</span>
+=======
+                        <span>{event?.venue}</span>
+>>>>>>> de7542c0fb3298521bac62c709b896e39257d0f7
                     </div>
                     <button 
                     onClick={() => setMapOpen(!mapOpen)}

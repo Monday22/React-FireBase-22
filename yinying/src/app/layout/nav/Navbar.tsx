@@ -4,7 +4,10 @@ import { useAppSelector, } from "../../../lib/stores/store";
 ;
 export default function Navbar() {
     const user = useAppSelector(state => state.account.user);
+<<<<<<< HEAD
     const loading = useAppSelector(state => state.firestore.loading);
+=======
+>>>>>>> de7542c0fb3298521bac62c709b896e39257d0f7
     return (
         <header className="px-3 w-full fixed top-0 z-50 bg-linear-to-r from-primary to-black">
             <div className="flex align-middle items-center px-10 mx-auto gap-6 cursor-pointer">

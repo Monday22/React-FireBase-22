@@ -20,9 +20,12 @@
     "@reduxjs/toolkit": "^2.11.2",
     "@tailwindcss/vite": "^4.1.18",
     "clsx": "^2.1.1",
+<<<<<<< HEAD
     "firebase": "^12.9.0",
     "firebase-admin": "^13.6.1",
     "fs": "^0.0.1-security",
+=======
+>>>>>>> de7542c0fb3298521bac62c709b896e39257d0f7
     "leaflet": "^1.9.4",
     "motion": "^12.30.1",
     "react": "^19.2.0",
@@ -38,7 +41,11 @@
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@types/leaflet": "^1.9.21",
+<<<<<<< HEAD
     "@types/node": "^24.10.12",
+=======
+    "@types/node": "^24.10.1",
+>>>>>>> de7542c0fb3298521bac62c709b896e39257d0f7
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react-swc": "^4.2.2",
